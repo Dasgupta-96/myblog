@@ -8,16 +8,18 @@ import org.hibernate.boot.internal.GenerationStrategyInterpreter;
 
 @Data
 @Entity
-@Table(name="post")
+@Table(name="student")
 @AllArgsConstructor
 @NoArgsConstructor
-public class post {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String description;
-    private String content;
-    private String title;
+    private int id;
+    private String name;
+    private String city;
+    private String email;
+    private int mobile;
+
 
 
 }
