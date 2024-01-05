@@ -1,7 +1,12 @@
 package com.myblog.myblog11;
 
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import org.hibernate.persister.entity.SingleTableEntityPersister;
+import org.springframework.cglib.core.internal.Function;
+
 import java.lang.reflect.Array;
+import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,24 +17,26 @@ import java.util.stream.Collectors;
 public class TestClass {
     public static void main(String[] args) {
 
-        // predicate functional interface
+        // Function functional interface -> it takes input and provides output
+        // map() is a method which takes function functional interface, we cant
 
-        Predicate<String> str = x->x.equals("aryan");
-        boolean b1 = str.test("aryan");
-        System.out.println(b1);
+       Function<String,Integer> data =  str->str.length();
+       Integer a = data.apply("aryan");
+        System.out.println(a);
 
-        Predicate<Integer> val = y->y%5==0;
-       boolean b=  val.test(25);
-        System.out.println(b);
+       Function<Integer, Integer> f = i->i+10;
+      Integer  x =  f.apply(50);
+        System.out.println(x);
 
-        // Stream API
-        List<Integer> num = Arrays.asList(10,12,1,5,16,19,20);
-        List<Integer>result= num.stream().filter(x->x%2==0).collect(Collectors.toList());
-        System.out.println(result);
+        List<String> names= Arrays.asList("arka","deb","mike","ram");
+       List<String> name=  names.stream().map(s->s.toUpperCase()).collect(Collectors.toList());
+        System.out.println(name);
+
+       List<Integer> val =  Arrays.asList(10,20,30);
+      List<Integer> sum =  val.stream().map(i->i+10).collect(Collectors.toList());
+        System.out.println(sum);
 
 
-        List<String> data = Arrays.asList("mike", "deb", "ankit", "maven");
-        List<String> res=  data.stream().filter(s->s.equals("mike")).collect(Collectors.toList());
-        System.out.println(res);
     }
+
 }
