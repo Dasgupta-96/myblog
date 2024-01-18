@@ -1,25 +1,25 @@
 package com.myblog.myblog11.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.boot.internal.GenerationStrategyInterpreter;
 
-@Data
 @Entity
-@Table(name="student")
+@Table(name="reg")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+@Data
+public class Registration {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String name;
     private String city;
     private String email;
-    private int mobile;
-
-
 
 }

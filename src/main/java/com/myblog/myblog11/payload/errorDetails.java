@@ -4,15 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentDto {
+public class errorDetails {
 
-    private int id;
-    private String name;
-    private String city;
-    private String email;
-    private int mobile;
+    private String message;
+    private Date date;
+    private String uri;
+
 
 }
