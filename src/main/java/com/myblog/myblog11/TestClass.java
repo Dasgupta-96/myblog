@@ -8,9 +8,18 @@ import java.util.function.Supplier;
 public class TestClass {
     public static void main(String[] args) {
 
- Consumer<String> data=  name-> System.out.println(name);
- data.accept("Manish");
+        TestClass t = new TestClass();
+        System.out.println(100);
+        int a = t.test();
+
+        System.out.println(a);
 
 
+    }
+    public int test(){
+
+        int res = EmployeeTest.test1();
+
+        return res;
     }
 }
