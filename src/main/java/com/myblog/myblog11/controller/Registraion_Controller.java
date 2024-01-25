@@ -4,6 +4,8 @@ import com.myblog.myblog11.entity.Registration;
 import com.myblog.myblog11.exception.ResourceNotFoundException;
 import com.myblog.myblog11.payload.PostRegDto;
 import com.myblog.myblog11.repository.RegistrationRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +33,8 @@ public class Registraion_Controller {
 
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
-    // http://localhost:8080/api/saveData?id=5
-    @GetMapping
+    // http://localhost:8080/api/saveData/particular?id=5
+    @GetMapping("/particular")
     public ResponseEntity<?> getAlldata(@RequestParam("id") int id){
 
         Registration reg = repo.findById(id).orElseThrow(
@@ -42,7 +44,6 @@ public class Registraion_Controller {
 
         return new ResponseEntity<>(reg,HttpStatus.OK);
     }
-    // http://localhost:8080/api/saveData
 
    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteReg(@PathVariable int id){
@@ -50,6 +51,20 @@ public class Registraion_Controller {
        repo.deleteById(id);
 
        return new ResponseEntity<>("Record is deleted",HttpStatus.OK);
+
+    }
+    @GetMapping
+    //  http://localhost:8080/api/saveData?pageNo=0&pageSize=2
+    public ResponseEntity<?> pagination(
+
+        @RequestParam(name="pageNo", required = false, defaultValue = "0") int pageNo,
+        @RequestParam(name="pageSize", required = false, defaultValue = "2") int pageSize
+    ){
+        PageRequest pageable = PageRequest.of(pageNo, pageSize);
+        Page<Registration> pages = repo.findAll(pageable);
+        List<Registration> result = pages.getContent();
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
 }

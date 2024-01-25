@@ -1,25 +1,27 @@
 package com.myblog.myblog11;
 
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class TestClass {
+
+
+
     public static void main(String[] args) {
+// ternary operator
+        int x =50;
+        int y = 20;
 
-        TestClass t = new TestClass();
-        System.out.println(100);
-        int a = t.test();
+        int max = (x>y) ? x : y;
 
-        System.out.println(a);
+        System.out.println("the max value is " +max);
 
 
-    }
-    public int test(){
-
-        int res = EmployeeTest.test1();
-
-        return res;
     }
 }
