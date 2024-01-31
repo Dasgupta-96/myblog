@@ -1,6 +1,7 @@
 package com.myblog.myblog11.exception;
 
-import com.myblog.myblog11.payload.errorDetails;
+import com.myblog.myblog11.payload.ErrorDetails;
+import com.myblog.myblog11.payload.PostDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,10 +15,11 @@ import java.util.Date;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<errorDetails> exceptionHandler(ResourceNotFoundException e, WebRequest webrequest){
+    public ResponseEntity<ErrorDetails> handlerMethod(ResourceNotFoundException e, WebRequest webRequest){
 
-        errorDetails e1 = new errorDetails(e.getMessage(),new Date(),webrequest.getDescription(true)) ;
-return new ResponseEntity<>(e1, HttpStatus.INTERNAL_SERVER_ERROR);
+        ErrorDetails e1 = new ErrorDetails(e.getMessage(), new Date(), webRequest.getDescription(true));
+
+        return new ResponseEntity<>(e1, HttpStatus.INTERNAL_SERVER_ERROR);
 
     }
 }
