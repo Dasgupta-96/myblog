@@ -21,6 +21,7 @@ public class PostController {
     }
 
     // http://localhost:8080/api/posts
+
     @PostMapping
     public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto){
 
@@ -62,7 +63,7 @@ public  List<PostDto> getAllData(){
 //}
 
     @GetMapping("/pagination")
-    // http://localhost:8080/api/posts?pageNo=0&pageSize=2
+    // http://localhost:8080/api/posts/pagination?pageNo=0&pageSize=2
     public List<PostDto> pagination(
 
      @RequestParam(name="pageNo", required = false, defaultValue = "0") int pageNo,

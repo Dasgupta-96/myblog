@@ -25,5 +25,22 @@ public class CommentController {
 
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
+    @DeleteMapping("/{id}")
+  // http://localhost:8080/api/comments/2
+public ResponseEntity<?> deleteComment(@PathVariable int id){
+
+        ser.deleteById(id);
+
+        return new ResponseEntity<>("The comment is deleted!!", HttpStatus.OK);
+}
+
+@PutMapping("/{id}/post/{postId}")
+// http://localhost:8080/api/comments/1/post/1
+public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto,@PathVariable int id, @PathVariable int postId){
+
+    CommentDto dto = ser.updateComment(commentDto, id, postId);
+
+    return new ResponseEntity<>(dto,HttpStatus.OK);
+}
 
 }

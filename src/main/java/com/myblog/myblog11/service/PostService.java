@@ -4,6 +4,7 @@ import com.myblog.myblog11.entity.Post;
 import com.myblog.myblog11.exception.ResourceNotFoundException;
 import com.myblog.myblog11.payload.PostDto;
 import com.myblog.myblog11.repository.PostRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,11 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private PostRepository postRepo;
+    private ModelMapper modelMapper;
 
-    public PostService(PostRepository postRepo) {
+    public PostService(PostRepository postRepo, ModelMapper modelMapper) {
         this.postRepo = postRepo;
+        this.modelMapper=modelMapper;
     }
 
     public PostDto createPost(PostDto postDto) {
@@ -60,23 +63,15 @@ public class PostService {
         return dtos;
     }
   PostDto mapToDto(Post post){
-
-      PostDto dto = new PostDto();
-dto.setId(post.getId());
-      dto.setContent(post.getContent());
-      dto.setTitle(post.getTitle());
-      dto.setDescription(post.getDescription());
-
+      PostDto dto = modelMapper.map(post, PostDto.class);
+    
       return  dto;
   }
 
     Post mapToEntity(PostDto postDto){
 
-        Post post = new Post();
-post.setId(postDto.getId());
-        post.setTitle(postDto.getTitle());
-        post.setContent(postDto.getContent());
-        post.setDescription(postDto.getDescription());
+        Post post = modelMapper.map(postDto, Post.class);
+
 
         return post;
     }
