@@ -23,6 +23,25 @@ public class PostService {
         this.modelMapper=modelMapper;
     }
 
+
+
+    PostDto mapToDto(Post post){
+        PostDto dto = modelMapper.map(post, PostDto.class);
+
+        return  dto;
+    }
+
+    Post mapToEntity(PostDto postDto){
+
+        Post post = modelMapper.map(postDto, Post.class);
+
+        return post;
+    }
+
+
+
+
+
     public PostDto createPost(PostDto postDto) {
 
         Post post = mapToEntity(postDto);
@@ -45,8 +64,8 @@ public class PostService {
         PostDto dto = new PostDto();
         dto.setId(post.getId());
         dto.setContent(post.getContent());
-        post.setTitle(post.getTitle());
-        post.setDescription(post.getDescription());
+        dto.setTitle(post.getTitle());
+        dto.setDescription(post.getDescription());
 
         return dto;
     }
@@ -62,19 +81,7 @@ public class PostService {
         List<PostDto> dtos = posts.stream().map(post -> mapToDto(post)).collect(Collectors.toList());
         return dtos;
     }
-  PostDto mapToDto(Post post){
-      PostDto dto = modelMapper.map(post, PostDto.class);
-    
-      return  dto;
-  }
 
-    Post mapToEntity(PostDto postDto){
-
-        Post post = modelMapper.map(postDto, Post.class);
-
-
-        return post;
-    }
 
     public List<PostDto> pagination(int pageNo, int pageSize){
 
