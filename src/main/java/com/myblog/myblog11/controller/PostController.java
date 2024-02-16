@@ -65,14 +65,15 @@ public  List<PostDto> getAllData(){
 //}
 
     @GetMapping("/pagination")
-    // http://localhost:8080/api/posts/pagination?pageNo=0&pageSize=2
+    // http://localhost:8080/api/posts/pagination?pageNo=0&pageSize=2&sortBy=title
     public List<PostDto> pagination(
 
      @RequestParam(name="pageNo", required = false, defaultValue = "0") int pageNo,
-     @RequestParam(name="pageSize", required = false, defaultValue = "2") int pageSize
+     @RequestParam(name="pageSize", required = false, defaultValue = "2") int pageSize,
+     @RequestParam(name="sortBy",required = false,defaultValue = "id") String sortBy
 
     ){
-        List<PostDto> dtos = ser.pagination(pageNo, pageSize);
+        List<PostDto> dtos = ser.pagination(pageNo, pageSize,sortBy);
         return dtos;
 
 

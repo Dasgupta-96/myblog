@@ -12,6 +12,16 @@ public class SignUpDto {
     private String email;
     private String password;
 
+    private String rollType;
+
+    public String getRollType() {
+        return rollType;
+    }
+
+    public void setRollType(String rollType) {
+        this.rollType = rollType;
+    }
+
     public String getName() {
         return name;
     }

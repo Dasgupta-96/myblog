@@ -7,6 +7,7 @@ import com.myblog.myblog11.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,15 +27,20 @@ public class PostService {
 
 
     PostDto mapToDto(Post post){
+
+
         PostDto dto = modelMapper.map(post, PostDto.class);
 
+        // ModelMapper()= helps us to copy the code from one object to another object(from Dto to entity or vice versa)
+        // it helps us to reduce the boiler plate codes
         return  dto;
     }
 
     Post mapToEntity(PostDto postDto){
 
         Post post = modelMapper.map(postDto, Post.class);
-
+        // ModelMapper()= helps us to copy the code from one object to another object(from Dto to entity or vice versa)
+        // it helps us to reduce the boiler plate codes
         return post;
     }
 
@@ -83,9 +89,9 @@ public class PostService {
     }
 
 
-    public List<PostDto> pagination(int pageNo, int pageSize){
+    public List<PostDto> pagination(int pageNo, int pageSize, String sortBy){
 
-        PageRequest pageable = PageRequest.of(pageNo, pageSize);
+        PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<Post> posts = postRepo.findAll(pageable);
         List<Post> post = posts.getContent();
 

@@ -48,7 +48,7 @@ public class CommentService {
 
         Post post = postRepo.findById(postId).orElseThrow(
 
-                () -> new ResourceNotFoundException("post is not present in this id " + id)
+                () -> new ResourceNotFoundException("post is not present in this id " + postId)
         );
         Comment comment = commentRepo.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Comment is not present in this id " + id)
