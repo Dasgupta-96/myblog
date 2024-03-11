@@ -24,8 +24,6 @@ public class PostService {
         this.modelMapper=modelMapper;
     }
 
-
-
     PostDto mapToDto(Post post){
 
 
@@ -43,8 +41,6 @@ public class PostService {
         // it helps us to reduce the boiler plate codes
         return post;
     }
-
-
 
 
 
@@ -67,11 +63,12 @@ public class PostService {
                 () -> new ResourceNotFoundException("The post is not present in this id " + id)
 
         );
-        PostDto dto = new PostDto();
-        dto.setId(post.getId());
-        dto.setContent(post.getContent());
-        dto.setTitle(post.getTitle());
-        dto.setDescription(post.getDescription());
+        PostDto dto = mapToDto(post);
+//        PostDto dto = new PostDto();
+//        dto.setId(post.getId());
+//        dto.setContent(post.getContent());
+//        dto.setTitle(post.getTitle());
+//        dto.setDescription(post.getDescription());
 
         return dto;
     }

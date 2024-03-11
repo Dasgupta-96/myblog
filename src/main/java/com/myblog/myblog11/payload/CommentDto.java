@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class CommentDto {
 
     private int id;
+
     private String email;
     private String text;
 

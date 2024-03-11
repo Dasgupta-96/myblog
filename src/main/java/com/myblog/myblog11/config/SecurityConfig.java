@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -25,11 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
-
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
+
+    protected void configure(HttpSecurity http) throws Exception{
+
+        http
+
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/api/**").permitAll()
@@ -38,18 +40,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .httpBasic();
+
     }
-
-
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
-        UserDetails user = User.builder().username("chotu").password(passwordEncoder()
-                .encode("chotu")).roles("USER").build();
-        UserDetails admin = User.builder().username("baptu").password(passwordEncoder()
-                .encode("baptu")).roles("ADMIN").build();
+        UserDetails user = User.builder().username("user").password(passwordEncoder()
+                .encode("user")).roles("USER").build();
+        UserDetails admin = User.builder().username("arkadeb").password(passwordEncoder()
+                .encode("dasgupta")).roles("ADMIN").build();
         return new InMemoryUserDetailsManager(user, admin);
     }
-
 
 }

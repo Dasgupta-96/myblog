@@ -1,25 +1,22 @@
 package com.myblog.myblog11.entity;
 
+
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.persistence.Table;
 
-@Setter
-@Getter
 @Entity
 @Table(name="roles")
+@Setter
+@Getter
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(length = 60)
     private String name;
-
-
 }
